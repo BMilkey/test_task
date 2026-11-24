@@ -956,7 +956,7 @@
   <section class="special-offers" id="special-offers">
     <div class="special-offers-header">
       <h2 class="section-title">Special offers</h2>
-      <p class="special-offers-description">Four homes at 7% off the list price<br />until 31 December.</p>
+      <p class="special-offers-description">Four homes at 7% off the list price until 31 December.</p>
     </div>
 
     <div class="special-offers-grid">
@@ -1779,13 +1779,12 @@
   .special-offers {
     display: flex;
     flex-direction: column;
-    padding: 0 32px 160px;
+    padding: 160px 32px;
     row-gap: 64px;
   }
 
   .special-offers-header {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
   }
 
@@ -1799,6 +1798,56 @@
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 24px;
+  }
+
+  @media (max-width: 900px) {
+    .special-offers {
+      padding: 120px 32px;
+      row-gap: 48px;
+    }
+
+    .special-offers-header {
+      flex-direction: column;
+      row-gap: 16px;
+    }
+
+    .special-offers-description {
+      width: 50%;
+    }
+
+    .special-offers-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 48px 24px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .special-offers {
+      padding: 96px 0 96px 16px;
+      row-gap: 32px;
+    }
+
+    .special-offers-header {
+      flex-direction: column;
+      row-gap: 12px;
+    }
+
+    .special-offers-description {
+      width: 95%;
+    }
+
+    .special-offers-grid {
+      display: flex;
+      overflow-x: auto;
+      column-gap: 12px;
+      padding-bottom: 12px;
+      scroll-snap-type: x mandatory;
+    }
+
+    .special-offers-card {
+      flex: 0 0 78%;
+      scroll-snap-align: start;
+    }
   }
 
   .special-offers-card {
@@ -1840,7 +1889,6 @@
 
   .special-offers-prices {
     display: flex;
-    flex-direction: row;
     column-gap: 12px;
     align-items: center;
     padding-top: 14px;

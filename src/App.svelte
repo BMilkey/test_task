@@ -956,7 +956,7 @@
   <section style="display: flex; flex-direction: column; padding: 0 32px 160px; row-gap: 64px" id="special-offers">
     <div style="display: flex; flex-direction: row; justify-content: space-between;">
       <h2 class="section-title">Special offers</h2>
-      <p style="width: 420px">Four homes at 7% off the list price<br />until 31 December.</p>
+      <p style="width: 420px; color: var(--ink); font-size: var(--step-lead)">Four homes at 7% off the list price<br />until 31 December.</p>
     </div>
 
     <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px">
@@ -967,15 +967,19 @@
                alt={`Apartment ${offer.id}`}
                loading="lazy"
           />
-          <div style="display: flex; flex-direction: column; row-gap: 4px">
-            <span>{offer.building}, floor {offer.floor}</span>
-            <span>{offer.bedrooms} bedrooms, {offer.area} m²</span>
-            <span>{offer.description}</span>
-            <div style="display: flex; flex-direction: row; column-gap: 12px">
-              <span>£{offer.offerPrice.toLocaleString('en-GB')}</span>
-              <span>£{offer.listPrice.toLocaleString('en-GB')}</span>
+          <div style="display: flex; flex-direction: column; row-gap: 6px">
+            <span style="color: var(--muted); font-size: var(--step-small); font-weight: 400">{offer.building}, floor {offer.floor}</span>
+            <span style="color: var(--ink); font-weight: 400">{offer.bedrooms} bedrooms, {offer.area} m²</span>
+            <span style="color: var(--muted); font-size: var(--step-small); font-weight: 400">{offer.description}</span>
+            <div style="display: flex; flex-direction: row; column-gap: 12px; align-items: center; padding-top: 14px">
+              <span style="color: var(--ink); font-size: var(--step-body); font-weight: 500">£{offer.offerPrice.toLocaleString('en-GB')}</span>
+              <span style="color: var(--muted); font-size: var(--step-small); font-weight: 400; text-decoration: line-through">£{offer.listPrice.toLocaleString('en-GB')}</span>
             </div>
-            <button>Book a viewing</button>
+            <button class="offer-card__action" style="padding: 16px 0 0; color: var(--ink); font-weight: 500; width: fit-content; border: none; background: transparent; text-decoration: underline;text-underline-offset: 3px; font-size: 17px"
+                    on:click|preventDefault={openCallback}
+            >
+              Book a viewing
+            </button>
           </div>
         </article>
       {/each}

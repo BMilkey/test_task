@@ -953,33 +953,29 @@
     </div>
   </section>
 
-  <section style="display: flex; flex-direction: column; padding: 0 32px 160px; row-gap: 64px" id="special-offers">
-    <div style="display: flex; flex-direction: row; justify-content: space-between;">
+  <section class="special-offers" id="special-offers">
+    <div class="special-offers-header">
       <h2 class="section-title">Special offers</h2>
-      <p style="width: 420px; color: var(--ink); font-size: var(--step-lead)">Four homes at 7% off the list price<br />until 31 December.</p>
+      <p class="special-offers-description">Four homes at 7% off the list price<br />until 31 December.</p>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px">
+    <div class="special-offers-grid">
       {#each specialOffers as offer (offer.id)}
-        <article style="min-width: 0; display: flex; flex-direction: column; row-gap: 20px">
-          <img style="display: block; width: 100%; aspect-ratio: 4/5; object-fit: cover"
+        <article class="special-offers-card">
+          <img class="special-offers-image"
                src={offer.image}
                alt={`Apartment ${offer.id}`}
                loading="lazy"
           />
-          <div style="display: flex; flex-direction: column; row-gap: 6px">
-            <span style="color: var(--muted); font-size: var(--step-small); font-weight: 400">{offer.building}, floor {offer.floor}</span>
-            <span style="color: var(--ink); font-weight: 400">{offer.bedrooms} bedrooms, {offer.area} m²</span>
-            <span style="color: var(--muted); font-size: var(--step-small); font-weight: 400">{offer.description}</span>
-            <div style="display: flex; flex-direction: row; column-gap: 12px; align-items: center; padding-top: 14px">
-              <span style="color: var(--ink); font-size: var(--step-body); font-weight: 500">£{offer.offerPrice.toLocaleString('en-GB')}</span>
-              <span style="color: var(--muted); font-size: var(--step-small); font-weight: 400; text-decoration: line-through">£{offer.listPrice.toLocaleString('en-GB')}</span>
+          <div class="special-offers-info">
+            <span class="special-offers-building">{offer.building}, floor {offer.floor}</span>
+            <span class="special-offers-params">{offer.bedrooms} bedrooms, {offer.area} m²</span>
+            <span class="special-offers-building-description">{offer.description}</span>
+            <div class="special-offers-prices">
+              <span class="special-offers-price">£{offer.offerPrice.toLocaleString('en-GB')}</span>
+              <span class="special-offers-list-price">£{offer.listPrice.toLocaleString('en-GB')}</span>
             </div>
-            <button class="offer-card__action" style="padding: 16px 0 0; color: var(--ink); font-weight: 500; width: fit-content; border: none; background: transparent; text-decoration: underline;text-underline-offset: 3px; font-size: 17px"
-                    on:click|preventDefault={openCallback}
-            >
-              Book a viewing
-            </button>
+            <button class="special-offers-button" on:click|preventDefault={openCallback}>Book a viewing</button>
           </div>
         </article>
       {/each}
@@ -1778,6 +1774,101 @@
 
   .gallery-shot:hover img {
     transform: scale(1.04);
+  }
+
+  .special-offers {
+    display: flex;
+    flex-direction: column;
+    padding: 0 32px 160px;
+    row-gap: 64px;
+  }
+
+  .special-offers-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .special-offers-description {
+    width: 420px;
+    color: var(--ink);
+    font-size: var(--step-lead);
+  }
+
+  .special-offers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .special-offers-card {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
+  .special-offers-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+  }
+
+  .special-offers-info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+  }
+
+  .special-offers-building {
+    color: var(--muted);
+    font-size: var(--step-small);
+    font-weight: 400;
+  }
+
+  .special-offers-params {
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  .special-offers-building-description {
+    color: var(--muted);
+    font-size: var(--step-small);
+    font-weight: 400;
+  }
+
+  .special-offers-prices {
+    display: flex;
+    flex-direction: row;
+    column-gap: 12px;
+    align-items: center;
+    padding-top: 14px;
+  }
+
+  .special-offers-price {
+    color: var(--ink);
+    font-size: var(--step-body);
+    font-weight: 500;
+  }
+
+  .special-offers-list-price {
+    color: var(--muted);
+    font-size: var(--step-small);
+    font-weight: 400;
+    text-decoration: line-through;
+  }
+
+  .special-offers-button {
+    padding: 16px 0 0;
+    color: var(--ink);
+    font-weight: 500;
+    width: fit-content;
+    border: none;
+    background: transparent;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-size: 17px;
   }
 
   .catalog {

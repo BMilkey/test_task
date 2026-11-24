@@ -107,6 +107,53 @@
     { type: 'tall', items: [8] },
   ];
 
+  const specialOffers = [
+    {
+      id: 'QS-1209',
+      building: 'Quayside',
+      image: '/media/offers/offer-QS-1209.png',
+      bedrooms: 2,
+      area: 58.1,
+      floor: 12,
+      listPrice: 389000,
+      description: 'Water side, no balcony',
+      offerPrice: 361800,
+    },
+    {
+      id: 'CH-907',
+      building: 'Crane House',
+      image: '/media/offers/offer-CH-907.png',
+      bedrooms: 2,
+      area: 58.4,
+      floor: 9,
+      listPrice: 334500,
+      description: 'North-west corner, balcony over the courtyard',
+      offerPrice: 311100,
+    },
+    {
+      id: 'YD-708',
+      building: 'Yard',
+      image: '/media/offers/offer-YD-708.png',
+      bedrooms: 2,
+      area: 70.3,
+      floor: 7,
+      listPrice: 365500,
+      description: 'South-east corner, balcony over the courtyard',
+      offerPrice: 339900,
+    },
+    {
+      id: 'TR-609',
+      building: 'Terrace',
+      image: '/media/offers/offer-TR-609.png',
+      bedrooms: 2,
+      area: 74.8,
+      floor: 6,
+      listPrice: 411000,
+      description: 'Old town side, balcony facing the old town',
+      offerPrice: 382200,
+    },
+  ];
+
   const buildings = [
     { name: 'Quayside', title: 'Quayside, 21 floors, keys in Q4 2027' },
     { name: 'Crane House', title: 'Crane House, 16 floors, keys in Q2 2028' },
@@ -906,66 +953,95 @@
     </div>
   </section>
 
-  <section id="catalog" class="catalog wrap">
-    <div class="row">
-      <div class="col-4">
-        <h2 class="section-title">Choose a home</h2>
-        <div class="catalog-side">
-          <div class="filter" style="margin-top: 44px">
-            <p class="filter-label">Bedrooms</p>
-            <div class="chips">
-              {#each roomOptions as r}
-                <button type="button" class="chip" class:chip-on={rooms.indexOf(r) > -1} on:click={() => toggleRooms(r)}>
-                  {r === 0 ? 'Studio' : r}
-                </button>
-              {/each}
+  <section style="display: flex; flex-direction: column; padding: 0 32px 160px; row-gap: 64px" id="special-offers">
+    <div style="display: flex; flex-direction: row; justify-content: space-between;">
+      <h2 class="section-title">Special offers</h2>
+      <p style="width: 420px">Four homes at 7% off the list price<br />until 31 December.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px">
+      {#each specialOffers as offer (offer.id)}
+        <article style="min-width: 0; display: flex; flex-direction: column; row-gap: 20px">
+          <img style="display: block; width: 100%; aspect-ratio: 4/5; object-fit: cover"
+               src={offer.image}
+               alt={`Apartment ${offer.id}`}
+               loading="lazy"
+          />
+          <div style="display: flex; flex-direction: column; row-gap: 4px">
+            <span>{offer.building}, floor {offer.floor}</span>
+            <span>{offer.bedrooms} bedrooms, {offer.area} m²</span>
+            <span>{offer.description}</span>
+            <div style="display: flex; flex-direction: row; column-gap: 12px">
+              <span>£{offer.offerPrice.toLocaleString('en-GB')}</span>
+              <span>£{offer.listPrice.toLocaleString('en-GB')}</span>
             </div>
+            <button>Book a viewing</button>
           </div>
-
-          <div class="filter">
-            <p class="filter-label">Area, m²</p>
-            <div class="pair">
-              <input class="field" type="number" placeholder="from" bind:value={areaFrom} />
-              <input class="field" type="number" placeholder="to" bind:value={areaTo} />
-            </div>
-          </div>
-
-          <div class="filter">
-            <p class="filter-label">Price, £</p>
-            <div class="pair">
-              <input class="field" type="number" placeholder="from" bind:value={priceFrom} />
-              <input class="field" type="number" placeholder="to" bind:value={priceTo} />
-            </div>
-          </div>
-
-          <div class="filter">
-            <p class="filter-label">Floor</p>
-            <div class="pair">
-              <input class="field" type="number" placeholder="from" bind:value={floorFrom} />
-              <input class="field" type="number" placeholder="to" bind:value={floorTo} />
-            </div>
-          </div>
-
-          <div class="filter" style="margin-top: 28px">
-            <input class="field" type="text" placeholder="Home number, for example QS-1204" value={query} on:input={onSearch} />
-          </div>
-
-          <div class="filter" style="margin-top: 8px">
-            <select class="field field-select" bind:value={sort} aria-label="Sort">
-              {#each sorts as s}
-                <option value={s.value}>{s.label}</option>
-              {/each}
-            </select>
-          </div>
-
-          <a class="catalog-clear link-line" href="#catalog" on:click|preventDefault={clearFilters}>Clear filters</a>
-        </div>
-      </div>
-      <div class="col-8">
-        <FlatList {groups} total={flats.length} {favorites} {config} onOpen={openFlat} onFavorite={toggleFavorite} />
-      </div>
+        </article>
+      {/each}
     </div>
   </section>
+
+<!--  <section id="catalog" class="catalog wrap">-->
+<!--    <div class="row">-->
+<!--      <div class="col-4">-->
+<!--        <h2 class="section-title">Choose a home</h2>-->
+<!--        <div class="catalog-side">-->
+<!--          <div class="filter" style="margin-top: 44px">-->
+<!--            <p class="filter-label">Bedrooms</p>-->
+<!--            <div class="chips">-->
+<!--              {#each roomOptions as r}-->
+<!--                <button type="button" class="chip" class:chip-on={rooms.indexOf(r) > -1} on:click={() => toggleRooms(r)}>-->
+<!--                  {r === 0 ? 'Studio' : r}-->
+<!--                </button>-->
+<!--              {/each}-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="filter">-->
+<!--            <p class="filter-label">Area, m²</p>-->
+<!--            <div class="pair">-->
+<!--              <input class="field" type="number" placeholder="from" bind:value={areaFrom} />-->
+<!--              <input class="field" type="number" placeholder="to" bind:value={areaTo} />-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="filter">-->
+<!--            <p class="filter-label">Price, £</p>-->
+<!--            <div class="pair">-->
+<!--              <input class="field" type="number" placeholder="from" bind:value={priceFrom} />-->
+<!--              <input class="field" type="number" placeholder="to" bind:value={priceTo} />-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="filter">-->
+<!--            <p class="filter-label">Floor</p>-->
+<!--            <div class="pair">-->
+<!--              <input class="field" type="number" placeholder="from" bind:value={floorFrom} />-->
+<!--              <input class="field" type="number" placeholder="to" bind:value={floorTo} />-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="filter" style="margin-top: 28px">-->
+<!--            <input class="field" type="text" placeholder="Home number, for example QS-1204" value={query} on:input={onSearch} />-->
+<!--          </div>-->
+
+<!--          <div class="filter" style="margin-top: 8px">-->
+<!--            <select class="field field-select" bind:value={sort} aria-label="Sort">-->
+<!--              {#each sorts as s}-->
+<!--                <option value={s.value}>{s.label}</option>-->
+<!--              {/each}-->
+<!--            </select>-->
+<!--          </div>-->
+
+<!--          <a class="catalog-clear link-line" href="#catalog" on:click|preventDefault={clearFilters}>Clear filters</a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="col-8">-->
+<!--        <FlatList {groups} total={flats.length} {favorites} {config} onOpen={openFlat} onFavorite={toggleFavorite} />-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </section>-->
   <section id="location" class="location">
     <div class="location-map" bind:this={mapEl}></div>
     <div class="location-card">

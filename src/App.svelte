@@ -982,66 +982,66 @@
     </div>
   </section>
 
-<!--  <section id="catalog" class="catalog wrap">-->
-<!--    <div class="row">-->
-<!--      <div class="col-4">-->
-<!--        <h2 class="section-title">Choose a home</h2>-->
-<!--        <div class="catalog-side">-->
-<!--          <div class="filter" style="margin-top: 44px">-->
-<!--            <p class="filter-label">Bedrooms</p>-->
-<!--            <div class="chips">-->
-<!--              {#each roomOptions as r}-->
-<!--                <button type="button" class="chip" class:chip-on={rooms.indexOf(r) > -1} on:click={() => toggleRooms(r)}>-->
-<!--                  {r === 0 ? 'Studio' : r}-->
-<!--                </button>-->
-<!--              {/each}-->
-<!--            </div>-->
-<!--          </div>-->
+  <section id="catalog" class="catalog wrap">
+    <div class="row">
+      <div class="col-4">
+        <h2 class="section-title">Choose a home</h2>
+        <div class="catalog-side">
+          <div class="filter" style="margin-top: 44px">
+            <p class="filter-label">Bedrooms</p>
+            <div class="chips">
+              {#each roomOptions as r}
+                <button type="button" class="chip" class:chip-on={rooms.indexOf(r) > -1} on:click={() => toggleRooms(r)}>
+                  {r === 0 ? 'Studio' : r}
+                </button>
+              {/each}
+            </div>
+          </div>
 
-<!--          <div class="filter">-->
-<!--            <p class="filter-label">Area, m²</p>-->
-<!--            <div class="pair">-->
-<!--              <input class="field" type="number" placeholder="from" bind:value={areaFrom} />-->
-<!--              <input class="field" type="number" placeholder="to" bind:value={areaTo} />-->
-<!--            </div>-->
-<!--          </div>-->
+          <div class="filter">
+            <p class="filter-label">Area, m²</p>
+            <div class="pair">
+              <input class="field" type="number" placeholder="from" bind:value={areaFrom} />
+              <input class="field" type="number" placeholder="to" bind:value={areaTo} />
+            </div>
+          </div>
 
-<!--          <div class="filter">-->
-<!--            <p class="filter-label">Price, £</p>-->
-<!--            <div class="pair">-->
-<!--              <input class="field" type="number" placeholder="from" bind:value={priceFrom} />-->
-<!--              <input class="field" type="number" placeholder="to" bind:value={priceTo} />-->
-<!--            </div>-->
-<!--          </div>-->
+          <div class="filter">
+            <p class="filter-label">Price, £</p>
+            <div class="pair">
+              <input class="field" type="number" placeholder="from" bind:value={priceFrom} />
+              <input class="field" type="number" placeholder="to" bind:value={priceTo} />
+            </div>
+          </div>
 
-<!--          <div class="filter">-->
-<!--            <p class="filter-label">Floor</p>-->
-<!--            <div class="pair">-->
-<!--              <input class="field" type="number" placeholder="from" bind:value={floorFrom} />-->
-<!--              <input class="field" type="number" placeholder="to" bind:value={floorTo} />-->
-<!--            </div>-->
-<!--          </div>-->
+          <div class="filter">
+            <p class="filter-label">Floor</p>
+            <div class="pair">
+              <input class="field" type="number" placeholder="from" bind:value={floorFrom} />
+              <input class="field" type="number" placeholder="to" bind:value={floorTo} />
+            </div>
+          </div>
 
-<!--          <div class="filter" style="margin-top: 28px">-->
-<!--            <input class="field" type="text" placeholder="Home number, for example QS-1204" value={query} on:input={onSearch} />-->
-<!--          </div>-->
+          <div class="filter" style="margin-top: 28px">
+            <input class="field" type="text" placeholder="Home number, for example QS-1204" value={query} on:input={onSearch} />
+          </div>
 
-<!--          <div class="filter" style="margin-top: 8px">-->
-<!--            <select class="field field-select" bind:value={sort} aria-label="Sort">-->
-<!--              {#each sorts as s}-->
-<!--                <option value={s.value}>{s.label}</option>-->
-<!--              {/each}-->
-<!--            </select>-->
-<!--          </div>-->
+          <div class="filter" style="margin-top: 8px">
+            <select class="field field-select" bind:value={sort} aria-label="Sort">
+              {#each sorts as s}
+                <option value={s.value}>{s.label}</option>
+              {/each}
+            </select>
+          </div>
 
-<!--          <a class="catalog-clear link-line" href="#catalog" on:click|preventDefault={clearFilters}>Clear filters</a>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="col-8">-->
-<!--        <FlatList {groups} total={flats.length} {favorites} {config} onOpen={openFlat} onFavorite={toggleFavorite} />-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </section>-->
+          <a class="catalog-clear link-line" href="#catalog" on:click|preventDefault={clearFilters}>Clear filters</a>
+        </div>
+      </div>
+      <div class="col-8">
+        <FlatList {groups} total={flats.length} {favorites} {config} onOpen={openFlat} onFavorite={toggleFavorite} />
+      </div>
+    </div>
+  </section>
   <section id="location" class="location">
     <div class="location-map" bind:this={mapEl}></div>
     <div class="location-card">
